@@ -22,5 +22,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake"
 
   spec.add_dependency "sinatra"
+  spec.add_dependency "coffee-script"
   spec.add_dependency "haml"
+  spec.add_dependency "sprockets"
+  spec.add_dependency "cornerstone-source"
 end

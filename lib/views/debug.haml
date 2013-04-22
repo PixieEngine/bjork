@@ -1,0 +1,25 @@
+!!!
+%html
+  %head
+    %meta{:"http-equiv"=>"Content-Type", :content=>"text/html;charset=UTF-8"}
+    %title Debug Console
+    %script{:type=>"text/javascript", :src=>"javascripts/jquery.min.js"}
+  %body
+    #eval_text
+      %textarea#text{:rows => 10, :style => 'width: 100%;'}
+
+    #button
+      %button{:onclick => 'eval_text()'} eval
+
+    %pre#result{:style => 'color: green; background-color: black; padding: 8px; display: none;'}
+
+    :javascript
+      $(document).ready(function() {
+        $("#text").focus();
+      });
+
+      function eval_text() {
+        $("#result").show();
+        $("#result").html('...');
+        $("#result").load('/debug_console', {text: $('#text').val()});
+      }
