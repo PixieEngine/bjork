@@ -26,4 +26,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency "haml"
   spec.add_dependency "sprockets"
   spec.add_dependency "cornerstone-source"
+  spec.add_dependency "jquery-source", "1.9.1.1"
 end

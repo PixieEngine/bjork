@@ -1,8 +1,13 @@
 require "bjork/version"
+
 require "sinatra"
+
 require 'coffee-script'
 require "haml"
+
 require "sprockets"
+
+require "jquery-source"
 require "cornerstone-source"
 
 module Bjork
