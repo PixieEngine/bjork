@@ -7,7 +7,7 @@ require "haml"
 
 require "sprockets"
 
-require "pixie_dust"
+require "shank"
 require "jquery-source"
 
 # Defaulting to bare compilation
