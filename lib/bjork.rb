@@ -17,16 +17,15 @@ module Bjork
   class Server < Sinatra::Base
     local_folder = File.expand_path(File.dirname(__FILE__))
 
+    # TODO: Add a file cache to speed up sproco
     set :assets, Sprockets::Environment.new
-
-    # TODO: Serve up game assets from external directory
 
     # Configure sprockets
     settings.assets.append_path "#{local_folder}/javascripts"
     settings.assets.append_path "#{local_folder}/stylesheets"
 
-    # Source Maps
-    settings.assets.append_path "radical/source_maps"
+    # External Sources
+    settings.assets.append_path "source"
 
     set :public_folder, local_folder
 
