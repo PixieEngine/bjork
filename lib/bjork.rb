@@ -10,6 +10,9 @@ require "sprockets"
 require "pixie_dust"
 require "jquery-source"
 
+# Defaulting to bare compilation
+Tilt::CoffeeScriptTemplate.default_bare = true
+
 module Bjork
   class Server < Sinatra::Base
     local_folder = File.expand_path(File.dirname(__FILE__))

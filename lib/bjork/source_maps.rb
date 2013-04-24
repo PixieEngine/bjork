@@ -12,6 +12,7 @@ module CoffeeScript
         options[:bare] = false
       end
 
+      # TODO: Better root_dir
       root_dir = Pathname("radical")
 
       pathname = options[:pathname]
