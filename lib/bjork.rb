@@ -38,27 +38,6 @@ module Bjork
       haml :index
     end
 
-    get "/images/*.*" do
-      content_type "image/png"
-
-      path, extension = params[:splat]
-
-      settings.assets["#{path}.#{extension}"]
-    end
-
-    get "/javascripts/*.*" do
-      content_type "application/javascript"
-
-      path, extension = params[:splat]
-
-      settings.assets["#{path}.#{extension}"]
-    end
-
-    get "/stylesheets/:file.css" do
-      content_type "text/css"
-      settings.assets["#{params[:file]}.css"]
-    end
-
     get '/debug_console' do
       haml :debug
     end
@@ -68,6 +47,23 @@ module Bjork
         eval(params[:text]).inspect
       rescue Exception => e
         ([e.message] + e.backtrace).join("\n")
+      end
+    end
+
+    %w[
+      images
+      javascripts
+      stylesheets
+    ].each do |dir|
+      get "/#{dir}/*.*" do
+        path, extension = params[:splat]
+
+        if asset = settings.assets["#{path}.#{extension}"]
+          content_type extension
+          asset
+        else
+          status 404
+        end
       end
     end
 
