@@ -17,8 +17,10 @@ module Bjork
   class Server < Sinatra::Base
     local_folder = File.expand_path(File.dirname(__FILE__))
 
-    # TODO: Add a file cache to speed up sproco
-    set :assets, Sprockets::Environment.new
+    asset_environment = Sprockets::Environment.new
+    asset_environment.cache = Sprockets::Cache::FileStore.new("/tmp")
+
+    set :assets, asset_environment
 
     # Configure sprockets
     settings.assets.append_path "#{local_folder}/javascripts"
@@ -26,6 +28,7 @@ module Bjork
 
     # External Sources
     settings.assets.append_path "source"
+    settings.assets.append_path "images"
 
     set :public_folder, local_folder
 
@@ -33,6 +36,14 @@ module Bjork
 
     get "/" do
       haml :index
+    end
+
+    get "/images/*.*" do
+      content_type "image/png"
+
+      path, extension = params[:splat]
+
+      settings.assets["#{path}.#{extension}"]
     end
 
     get "/javascripts/*.*" do
