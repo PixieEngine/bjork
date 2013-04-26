@@ -1,6 +1,16 @@
 # Bjork
 
-TODO: Write a gem description
+Magical HTML local game server. Serves up your CoffeeScript, JavaScript, image and sound assets.
+
+Put your files in:
+
+    data
+    images
+    sounds
+    music
+    source
+
+and they will be served by Bjork.
 
 ## Installation
 
@@ -18,7 +28,23 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Start the server and it will serve up your game. In your Rakefile
+
+    require "bjork/tasks"
+
+Then on the command line
+
+    rake start
+
+This will start the bjork server.
+
+Your game will be accessible at http://localhost:4567
+
+## FAQ
+
+Q. Why no umlaut?
+
+A. Umlauts are hell on Rubygems
 
 ## Contributing
 
