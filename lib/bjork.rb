@@ -77,16 +77,16 @@ module Bjork
       end
     end
 
-    # TODO: handle saving directory
-    # post '/levels' do
-    #   data = params["data"]
-    #   name = params["name"]
+    # Any post to /save will write data to the path provided.
+    post '/save' do
+      data = params["data"]
+      path = params["path"]
 
-    #   File.open("levels/#{name}.json", 'w') do |file|
-    #     file.write(data)
-    #   end
+      File.open(path, 'w') do |file|
+        file.write(data)
+      end
 
-    #   200
-    # end
+      200
+    end
   end
 end
