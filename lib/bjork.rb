@@ -26,9 +26,16 @@ module Bjork
     settings.assets.append_path "#{local_folder}/javascripts"
     settings.assets.append_path "#{local_folder}/stylesheets"
 
-    # External Sources
-    settings.assets.append_path "source"
-    settings.assets.append_path "images"
+    # External Sprockets Source directories
+    %w[
+      data
+      images
+      music
+      sounds
+      source
+    ].each do |path|
+      settings.assets.append_path path
+    end
 
     set :public_folder, local_folder
 
@@ -51,8 +58,11 @@ module Bjork
     end
 
     %w[
+      data
       images
       javascripts
+      music
+      sounds
       stylesheets
     ].each do |dir|
       get "/#{dir}/*.*" do
