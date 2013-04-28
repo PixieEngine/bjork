@@ -45,6 +45,12 @@ module Bjork
       haml :index
     end
 
+    get "/docs" do
+      documentation_dir = "#{local_folder}/documentation"
+
+      haml "#{documentation_dir}/index.html"
+    end
+
     get '/debug_console' do
       haml :debug
     end

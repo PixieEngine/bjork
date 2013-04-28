@@ -27,4 +27,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "sprockets"
   spec.add_dependency "shank"
   spec.add_dependency "jquery-source", "1.9.1.1"
+  spec.add_dependency "spacedocs"
 end
+
