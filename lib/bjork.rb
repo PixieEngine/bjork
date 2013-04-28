@@ -26,13 +26,13 @@ module Bjork
     settings.assets.append_path "#{local_folder}/javascripts"
     settings.assets.append_path "#{local_folder}/stylesheets"
 
+    # TODO: Consider asset gems
+    use Rack::Static, :urls => %w[/images /music /sounds]
+
     # External Sprockets Source directories
     %w[
       data
-      images
       lib
-      music
-      sounds
       source
     ].each do |path|
       settings.assets.append_path path
@@ -60,10 +60,7 @@ module Bjork
 
     %w[
       data
-      images
       javascripts
-      music
-      sounds
       stylesheets
     ].each do |dir|
       get "/#{dir}/*.*" do
