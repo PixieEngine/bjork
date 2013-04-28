@@ -18,7 +18,7 @@ module Bjork
     local_folder = File.expand_path(File.dirname(__FILE__))
 
     asset_environment = Sprockets::Environment.new
-    asset_environment.cache = Sprockets::Cache::FileStore.new("/tmp")
+    asset_environment.cache = Sprockets::Cache::FileStore.new("tmp")
 
     set :assets, asset_environment
 
@@ -30,6 +30,7 @@ module Bjork
     %w[
       data
       images
+      lib
       music
       sounds
       source
