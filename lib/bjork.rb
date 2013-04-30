@@ -1,6 +1,6 @@
 require "bjork/version"
 
-require "sinatra"
+require "sinatra/base"
 
 require 'coffee-script'
 require "haml"
