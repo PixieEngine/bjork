@@ -1,2 +1,24 @@
 .welcome
   %h1 HTML5 Game Development Server
+
+.content
+  :markdown
+
+
+    Saving data to your filesystem from HTML has never been easier:
+
+        POST /save
+        data The file contents to save
+        path The path relative to your project to save to
+
+    Example
+
+        $.post "save",
+          data: '{"coolField": "isAwesome"}'
+          path: "data/awesome.json"
+
+    Loading data is even easier. Because Bjork serves all content in your project folder
+    it will happen automatically.
+
+        $.getJSON "data/awesome.json", (data) ->
+          alert data.coolField
