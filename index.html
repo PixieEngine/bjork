@@ -12,5 +12,18 @@
     <div class='welcome'>
       <h1>HTML5 Game Development Server</h1>
     </div>
+    <div class='content'>
+      <p>Saving data to your filesystem from HTML has never been easier:</p>
+      
+      <pre><code>POST /save&#x000A;data The file contents to save&#x000A;path The path relative to your project to save to</code></pre>
+      
+      <p>Example</p>
+      
+      <pre><code>$.post &quot;save&quot;,&#x000A;  data: &#39;{&quot;coolField&quot;: &quot;isAwesome&quot;}&#39;&#x000A;  path: &quot;data/awesome.json&quot;</code></pre>
+      
+      <p>Loading data is even easier. Because Bjork serves all content in your project folder it will happen automatically.</p>
+      
+      <pre><code>$.getJSON &quot;data/awesome.json&quot;, (data) -&gt;&#x000A;  alert data.coolField</code></pre>
+    </div>
   </body>
 </html>
