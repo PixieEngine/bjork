@@ -1,15 +1,10 @@
 @charset "utf-8";
 body {
   background: #d4d4d4 url("../images/magic_planets.jpg");
-  text-align: center;
 }
-h1 {
-  color: rgba(0,0,0,0.3);
-  font-weight: bold;
-  font-size: 32px;
-  letter-spacing: -1px;
-  text-transform: uppercase;
-  text-shadow: 0 1px 0 rgba(255,255,255,0.5);
-  padding: 350px 0 10px;
-  margin: 0;
+.content {
+  padding: 1em;
+  margin: auto;
+  width: 960px;
+  background: rgba(220,220,200,0.9);
 }
