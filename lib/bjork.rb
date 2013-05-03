@@ -80,6 +80,9 @@ module Bjork
       data = params["data"]
       path = params["path"]
 
+      # Ensure directory exists
+      FileUtils.mkdir_p File.dirname(path)
+
       File.open(path, 'w') do |file|
         file.write(data)
       end
