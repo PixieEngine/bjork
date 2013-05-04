@@ -18,17 +18,6 @@ module Bjork
   class Server < Sinatra::Base
     enable :logging
 
-    local_folder = File.expand_path(File.dirname(__FILE__))
-
-    asset_environment = Sprockets::Environment.new
-    asset_environment.cache = Sprockets::Cache::FileStore.new("tmp")
-
-    set :assets, asset_environment
-
-    # Configure sprockets
-    settings.assets.append_path "#{local_folder}/javascripts"
-    settings.assets.append_path "#{local_folder}/stylesheets"
-
     # Serve any assets that exist in our folders
     # Middlewares always take place before anything else,
     # so if the file exists locally in the following folders
@@ -36,16 +25,28 @@ module Bjork
     # If it is not found the request will continue to the rest of the app
     use Bjork::TryStatic, :urls => %w[/]
 
-    # External Sprockets Source directories
+    asset_environment = Sprockets::Environment.new
+    asset_environment.cache = Sprockets::Cache::FileStore.new("tmp")
+
+    server_folder = File.expand_path(File.dirname(__FILE__))
+
+    # Internal (bjork server) Sprockets asset directories
     %w[
-      data
+      javascripts
+      stylesheets
+    ].each do |path|
+      asset_environment.append_path File.join(server_folder, path)
+    end
+
+    # External (host app which is running bjork) Sprockets asset directories
+    %w[
       lib
       source
     ].each do |path|
-      settings.assets.append_path path
+      asset_environment.append_path path
     end
 
-    set :public_folder, local_folder
+    set :assets, asset_environment
 
     set :haml, { :format => :html5 }
 
@@ -90,6 +91,12 @@ module Bjork
       stylesheets
     ].each do |dir|
       get "/#{dir}/*.*" do
+        # Keep Sprockets environment's paths up to date with
+        # any gems that have been required after we've initialized
+        (Sprockets.paths - settings.assets.paths).each do |asset_path|
+          settings.assets.append_path asset_path
+        end
+
         path, extension = params[:splat]
 
         if asset = settings.assets["#{path}.#{extension}"]
