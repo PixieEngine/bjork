@@ -14,31 +14,21 @@ and they will be served by Bjork.
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-    gem 'bjork'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install bjork
+    gem install bjork
 
 ## Usage
 
-Start the server and it will serve up your game. In your Rakefile
+Creating a new game is easy!
 
-    require "bjork/tasks"
+    bjork create awesome_game
 
-Then on the command line
+Start the server and it will serve up your game. On the command line from within your games root directory:
 
-    rake start
+    bjork
 
 This will start the bjork server.
 
-Your game will be accessible at http://localhost:4567
+Your game will be accessible at http://localhost:1999
 
 ## FAQ
 
