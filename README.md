@@ -1,5 +1,7 @@
 # Bjork
 
+[Documentation](http://pixieengine.github.io/bjork/)
+
 Magical HTML local game server. Serves up your CoffeeScript, JavaScript, image and sound assets.
 
 Put your files in:
