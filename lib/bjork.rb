@@ -1,3 +1,6 @@
+require "bundler/setup"
+Bundler.require :components
+
 require "bjork/version"
 require "bjork/try_static"
 
@@ -11,6 +14,7 @@ require "sprockets"
 require "shank"
 require "jquery-source"
 
+# TODO: Is there a way we can get the best of both worlds?
 # Defaulting to bare compilation
 Tilt::CoffeeScriptTemplate.default_bare = true
 
