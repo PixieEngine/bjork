@@ -12,10 +12,63 @@
 
     With Bjork you can easily make amazing games! Nothing can stop you! Nothing will stand in your way!
 
+    Getting Started
+    ---------------
+
+        gem install bjork
+        bjork create awesome_game
+
     Running your Game
     -----------------
 
+        # From the root of your awesome_game directory
+        bjork run
 
+    Your game will be running on http://localhost:1999
+
+    Open it in your browser and party like it's 1999.
+
+    Structuring Your Files
+    ----------------------
+
+        ├── data
+        │   └── ...         <- JSON and whathaveyou
+        ├── images
+        │   └── ...         <- Put your images here
+        └── source
+            ├── main.coffee <- Runs your app!
+            └── ...         <- Your other code goes here
+
+    Bjork serves up files from your directories.
+
+    main.coffee
+    -----------
+
+        #= require_tree .
+
+        engine.add "Player",
+          x: 50
+          y: App.height/2
+
+        engine.start()
+
+    The first line says to include all your other code first. We then add the player and start our engine!
+
+    Adding Component Gems
+    -----------------
+
+    Entire game components can be stored as gems. The gems concentrate their power, kind of like Dragon Balls.
+
+    It's simple to include them in your game. Your `Gemfile` lists what gems your game uses.
+
+        gem "bjork"
+        gem "rake"
+
+        group :components do  # <- Add your components inside here
+          gem "jquery-source"
+          gem "shank"
+          # ...
+        end
 
     I/O
     ---
