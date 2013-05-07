@@ -11,3 +11,41 @@ body {
 pre {
   padding-left: 2em;
 }
+a.spork {
+  background: transparent url("../images/spork.png") no-repeat center;
+  width: 200px;
+  height: 412px;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: -125px;
+  -webkit-transform: rotate(-0.1turn);
+  -moz-transform: rotate(-0.1turn);
+  -o-transform: rotate(-0.1turn);
+  -ms-transform: rotate(-0.1turn);
+  transform: rotate(-0.1turn);
+  -webkit-transition: -webkit-transform 20s ease-in;
+  -moz-transition: -moz-transform 20s ease-in;
+  -o-transition: -o-transform 20s ease-in;
+  -ms-transition: -ms-transform 20s ease-in;
+  transition: transform 20s ease-in;
+}
+a.spork:hover {
+  -webkit-transform: rotate(0.2turn);
+  -moz-transform: rotate(0.2turn);
+  -o-transform: rotate(0.2turn);
+  -ms-transform: rotate(0.2turn);
+  transform: rotate(0.2turn);
+}
+a.spork:active {
+  -webkit-transition: -webkit-transform 0.01s ease-in-out;
+  -moz-transition: -moz-transform 0.01s ease-in-out;
+  -o-transition: -o-transform 0.01s ease-in-out;
+  -ms-transition: -ms-transform 0.01s ease-in-out;
+  transition: transform 0.01s ease-in-out;
+  -webkit-transform: translate(-100px, 40px);
+  -moz-transform: translate(-100px, 40px);
+  -o-transform: translate(-100px, 40px);
+  -ms-transform: translate(-100px, 40px);
+  transform: translate(-100px, 40px);
+}
