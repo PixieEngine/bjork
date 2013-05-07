@@ -17,6 +17,7 @@ Tilt::CoffeeScriptTemplate.default_bare = true
 module Bjork
   class Server < Sinatra::Base
     configure do
+      set :port, ENV["PORT"] || 1999
       enable :logging
 
       # Serve any assets that exist in our folders
