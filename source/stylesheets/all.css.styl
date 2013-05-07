@@ -1,5 +1,7 @@
 @charset "utf-8"
 
+@import "nib"
+
 body
   background #d4d4d4 url("../images/magic_planets_1440.jpg")
 
@@ -11,3 +13,23 @@ body
 
 pre
   padding-left 2em
+
+a.spork
+  background transparent url("../images/spork.png") no-repeat center
+  width 200px
+  height 412px
+  display inline-block
+  position absolute
+  top 0
+  right -125px
+
+  transform rotate(-0.1turn)
+
+  &:hover
+    transform rotate(0.2turn)
+
+  &:active
+    transition transform 0.01s ease-in-out
+    transform translate(-100px, 40px)
+
+  transition transform 20s ease-in
