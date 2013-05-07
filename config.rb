@@ -1,15 +1,5 @@
-###
-# Compass
-###
 
-# Susy grids in Compass
-# First: gem install susy
-# require 'susy'
-
-# Change Compass configuration
-# compass_config do |config|
-#   config.output_style = :compact
-# end
+Stylus.use(:nib)
 
 ###
 # Page options, layouts, aliases and proxies
