@@ -20,7 +20,37 @@
       
       <p>With Bjork you can easily make amazing games! Nothing can stop you! Nothing will stand in your way!</p>
       
+      <h2 id='getting_started'>Getting Started</h2>
+      
+      <pre><code>gem install bjork&#x000A;bjork create awesome_game</code></pre>
+      
       <h2 id='running_your_game'>Running your Game</h2>
+      
+      <pre><code># From the root of your awesome_game directory&#x000A;bjork run</code></pre>
+      
+      <p>Your game will be running on http://localhost:1999</p>
+      
+      <p>Open it in your browser and party like it&#8217;s 1999.</p>
+      
+      <h2 id='structuring_your_files'>Structuring Your Files</h2>
+      
+      <pre><code>├── data&#x000A;│   └── ...         &lt;- JSON and whathaveyou&#x000A;├── images&#x000A;│   └── ...         &lt;- Put your images here&#x000A;└── source&#x000A;    ├── main.coffee &lt;- Runs your app!&#x000A;    └── ...         &lt;- Your other code goes here</code></pre>
+      
+      <p>Bjork serves up files from your directories.</p>
+      
+      <h2 id='maincoffee'>main.coffee</h2>
+      
+      <pre><code>#= require_tree .&#x000A;&#x000A;engine.add &quot;Player&quot;,&#x000A;  x: 50&#x000A;  y: App.height/2&#x000A;&#x000A;engine.start()</code></pre>
+      
+      <p>The first line says to include all your other code first. We then add the player and start our engine!</p>
+      
+      <h2 id='adding_component_gems'>Adding Component Gems</h2>
+      
+      <p>Entire game components can be stored as gems. The gems concentrate their power, kind of like Dragon Balls.</p>
+      
+      <p>It&#8217;s simple to include them in your game. Your <code>Gemfile</code> lists what gems your game uses.</p>
+      
+      <pre><code>gem &quot;bjork&quot;&#x000A;gem &quot;rake&quot;&#x000A;&#x000A;group :components do  # &lt;- Add your components inside here&#x000A;  gem &quot;jquery-source&quot;&#x000A;  gem &quot;shank&quot;&#x000A;  # ...&#x000A;end</code></pre>
       
       <h2 id='io'>I/O</h2>
       
