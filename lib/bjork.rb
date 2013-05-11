@@ -1,6 +1,10 @@
-require "bjork/version"
+require "bundler/setup"
+Bundler.require :components
 
-require "sinatra"
+require "bjork/version"
+require "bjork/try_static"
+
+require "sinatra/base"
 
 require 'coffee-script'
 require "haml"
@@ -10,39 +14,66 @@ require "sprockets"
 require "shank"
 require "jquery-source"
 
+# TODO: Is there a way we can get the best of both worlds?
 # Defaulting to bare compilation
 Tilt::CoffeeScriptTemplate.default_bare = true
 
 module Bjork
   class Server < Sinatra::Base
-    local_folder = File.expand_path(File.dirname(__FILE__))
+    configure do
+      set :port, ENV["PORT"] || 1999
+      enable :logging
 
-    asset_environment = Sprockets::Environment.new
-    asset_environment.cache = Sprockets::Cache::FileStore.new("/tmp")
+      # Serve any assets that exist in our folders
+      # Middlewares always take place before anything else,
+      # so if the file exists locally in the following folders
+      # it will be served.
+      # If it is not found the request will continue to the rest of the app
+      use Bjork::TryStatic, :urls => %w[/]
 
-    set :assets, asset_environment
+      asset_environment = Sprockets::Environment.new
+      asset_environment.cache = Sprockets::Cache::FileStore.new("tmp")
 
-    # Configure sprockets
-    settings.assets.append_path "#{local_folder}/javascripts"
-    settings.assets.append_path "#{local_folder}/stylesheets"
+      server_folder = File.expand_path(File.dirname(__FILE__))
 
-    # External Sprockets Source directories
-    %w[
-      data
-      images
-      music
-      sounds
-      source
-    ].each do |path|
-      settings.assets.append_path path
+      # Internal (bjork server) Sprockets asset directories
+      %w[
+        javascripts
+        stylesheets
+      ].each do |path|
+        asset_environment.append_path File.join(server_folder, path)
+      end
+
+      # External (host app which is running bjork) Sprockets asset directories
+      %w[
+        lib
+        source
+      ].each do |path|
+        asset_environment.append_path path
+      end
+
+      set :assets, asset_environment
+
+      set :haml, { :format => :html5 }
     end
-
-    set :public_folder, local_folder
-
-    set :haml, { :format => :html5 }
 
     get "/" do
       haml :index
+    end
+
+    # Any post to /save will write data to the path provided.
+    post '/save' do
+      data = params["data"]
+      path = params["path"]
+
+      # Ensure directory exists
+      FileUtils.mkdir_p File.dirname(path)
+
+      File.open(path, 'w') do |file|
+        file.write(data)
+      end
+
+      200
     end
 
     get "/docs" do
@@ -63,12 +94,13 @@ module Bjork
       end
     end
 
+    # Asset gems can use any of these four directories to
+    # serve things up.
+    # Try sprockets last
     %w[
       data
       images
       javascripts
-      music
-      sounds
       stylesheets
     ].each do |dir|
       get "/#{dir}/*.*" do
@@ -82,17 +114,5 @@ module Bjork
         end
       end
     end
-
-    # TODO: handle saving directory
-    # post '/levels' do
-    #   data = params["data"]
-    #   name = params["name"]
-
-    #   File.open("levels/#{name}.json", 'w') do |file|
-    #     file.write(data)
-    #   end
-
-    #   200
-    # end
   end
 end
