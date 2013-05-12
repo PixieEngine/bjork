@@ -1,5 +1,8 @@
 # Bjork
 
+[![Gem Version](https://badge.fury.io/rb/bjork.png)](http://badge.fury.io/rb/bjork)
+[![Code Climate](https://codeclimate.com/github/PixieEngine/bjork.png)](https://codeclimate.com/github/PixieEngine/bjork)
+
 [Documentation](http://pixieengine.github.io/bjork/)
 
 Magical HTML local game server. Serves up your CoffeeScript, JavaScript, image and sound assets.
