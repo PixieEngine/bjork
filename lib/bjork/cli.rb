@@ -18,8 +18,8 @@ module Bjork
 
     desc "server", "Run your game!"
     def server
-      # TODO Move into server file
       require "bjork"
+
       Bjork::Server.run!
     end
 
